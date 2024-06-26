@@ -25,6 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+    
+    // Add event listener for keydown event to handle Enter key submission
+    symbolInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const symbol = symbolInput.value.toUpperCase();
+            loadCSVData(symbol);
+            loadAssetData(symbol);
+        }
+    });
 
     document.getElementById('stock-form').addEventListener('submit', function(e) {
         e.preventDefault();
