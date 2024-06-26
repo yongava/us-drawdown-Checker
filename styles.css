@@ -134,11 +134,12 @@ h1 {
 }
 
 .stock-info a {
-    color: #007bff;
+    color: #03d3dd;
     text-decoration: none;
 }
 
 .stock-info a:hover {
+    color: #f74d03;
     text-decoration: underline;
 }
 
