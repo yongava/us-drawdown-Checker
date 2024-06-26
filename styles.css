@@ -51,8 +51,8 @@ h1 {
     left: 0;
     right: 0;
     background: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 0px solid #ccc;
+    border-radius: 0px;
     max-height: 150px;
     overflow-y: auto;
     z-index: 1000;

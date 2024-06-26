@@ -80,9 +80,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const drawdownTrace = {
             x: drawdownData.map(d => d.date),
-            y: drawdownData.map(d => d.drawdown),
+            y: drawdownData.map(d => d.drawdown*100),
             type: 'scatter',
-            name: 'Drawdown'
+            name: 'Drawdown (%)'
         };
 
         const layout = {
