@@ -1,7 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
+    let symbols = [];
+
+    // Load the symbols from the JSON file
+    fetch('symbolist.json')
+        .then(response => response.json())
+        .then(data => symbols = data);
+
+    const symbolInput = document.getElementById('symbol');
+    const suggestionsContainer = document.getElementById('suggestions');
+
+    symbolInput.addEventListener('input', function() {
+        const input = symbolInput.value.toUpperCase();
+        suggestionsContainer.innerHTML = '';
+        if (input) {
+            const suggestions = symbols.filter(symbol => symbol.startsWith(input));
+            suggestions.forEach(suggestion => {
+                const suggestionDiv = document.createElement('div');
+                suggestionDiv.textContent = suggestion;
+                suggestionDiv.addEventListener('click', function() {
+                    symbolInput.value = suggestion;
+                    suggestionsContainer.innerHTML = '';
+                });
+                suggestionsContainer.appendChild(suggestionDiv);
+            });
+        }
+    });
+
     document.getElementById('stock-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        const symbol = document.getElementById('symbol').value.toUpperCase();
+        const symbol = symbolInput.value.toUpperCase();
         loadCSVData(symbol);
     });
 

@@ -14,7 +14,8 @@
         <h1>Stock Analysis</h1>
         <form id="stock-form" class="form">
             <label for="symbol">Enter Stock Symbol:</label>
-            <input type="text" id="symbol" name="symbol" required>
+            <input type="text" id="symbol" name="symbol" required autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
             <button type="submit">Submit</button>
         </form>
 

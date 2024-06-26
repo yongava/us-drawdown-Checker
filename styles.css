@@ -25,7 +25,7 @@ h1 {
 
 .form {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
@@ -41,6 +41,7 @@ h1 {
     font-size: 1em;
     border: 1px solid #ccc;
     border-radius: 4px;
+    width: 100%;
 }
 
 .form button {
@@ -55,6 +56,26 @@ h1 {
 
 .form button:hover {
     background-color: #0056b3;
+}
+
+.suggestions {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: calc(100% - 22px);
+    z-index: 1000;
+}
+
+.suggestions div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions div:hover {
+    background: #f0f0f0;
 }
 
 .report {
@@ -72,7 +93,6 @@ h1 {
 
 @media (max-width: 600px) {
     .form {
-        flex-direction: column;
         align-items: stretch;
     }
 
