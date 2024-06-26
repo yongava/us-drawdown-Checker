@@ -55,6 +55,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function loadAssetData(symbol) {
+        d3.csv('asset.csv').then(function(assetData) {
+            const assetInfo = assetData.find(d => d.symbol === symbol);
+            if (assetInfo) {
+                displayStockInfo(assetInfo);
+            } else {
+                document.getElementById('stock-info').innerHTML = 'No data available for this symbol.';
+            }
+        });
+    }
+
+    function displayStockInfo(assetInfo) {
+        const stockInfoDiv = document.getElementById('stock-info');
+        stockInfoDiv.innerHTML = `
+            <p><strong>Company Name:</strong> ${assetInfo.company_name}</p>
+            <p><strong>GICS Industry:</strong> ${assetInfo.gics_industry}</p>
+            <p><strong>Business Description:</strong> ${assetInfo.business_description}</p>
+            <p><a href="https://r-ket.app/asset-info?symbol=${assetInfo.symbol}&id=${assetInfo.asset_id}" target="_blank">See more fundamental info.</a></p>
+        `;
+    }
+
     // function displayReport(reportData) {
     //     const reportDiv = document.getElementById('report');
     //     reportDiv.innerHTML = '';
@@ -151,17 +172,8 @@ document.addEventListener('DOMContentLoaded', function() {
             { ...drawdownTrace, xaxis: 'x2', yaxis: 'y2' }
         ];
 
-        // Plotly.newPlot('charts', data, layout);
+        Plotly.newPlot('charts', data, layout);
 
-        Plotly.newPlot('charts', data, layout).then(gd => {
-        // Synchronize zooming
-        gd.on('plotly_relayout', function(eventdata) {
-            const update = {};
-            if(eventdata['xaxis.range[0]'] !== undefined && eventdata['xaxis.range[1]'] !== undefined) {
-                update['xaxis2.range'] = [eventdata['xaxis.range[0]'], eventdata['xaxis.range[1]']];
-            }
-            Plotly.relayout(gd, update);
-        });
-    });
+
     }
 });

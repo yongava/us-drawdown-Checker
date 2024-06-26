@@ -121,3 +121,21 @@ h1 {
 .report-table th {
     background-color: #f2f2f2;
 }
+
+.stock-info {
+    margin-bottom: 20px;
+}
+
+.stock-info p {
+    font-size: 1em;
+    color: #333;
+}
+
+.stock-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.stock-info a:hover {
+    text-decoration: underline;
+}
