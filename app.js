@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (reportData.length > 0) {
             reportData.forEach(row => {
                 const p = document.createElement('p');
-                p.textContent = `${row['Start Date']} to ${row['End Date']}: ${row['Drawdown Percentage']}%`;
+                p.textContent = `Drawdown Statisic: \n ${row['Start Date']} to ${row['End Date']}: ${row['Drawdown Percentage']}%`;
                 reportDiv.appendChild(p);
             });
         } else {

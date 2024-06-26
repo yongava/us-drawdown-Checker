@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Analysis</title>
+    <title>Historical Drawdown Since 2023</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -11,18 +11,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Stock Analysis</h1>
+        <h1>Historical Drawdown Since 2023</h1>
         <form id="stock-form" class="form">
-            <label for="symbol">Enter Stock Symbol:</label>
-            <input type="text" id="symbol" name="symbol" required autocomplete="off">
+            <input type="text" id="symbol" name="symbol" required autocomplete="on" placeholder="Enter Stock Symbol ex. AAPL">
             <div id="suggestions" class="suggestions"></div>
             <button type="submit">Submit</button>
         </form>
 
-        <h2>Report</h2>
+        <!-- <h2>Report</h2> -->
         <div id="report" class="report"></div>
 
-        <h2>Charts</h2>
+        <!-- <h2>Charts</h2> -->
         <div id="charts" class="charts"></div>
     </div>
 </body>
