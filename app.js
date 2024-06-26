@@ -151,6 +151,17 @@ document.addEventListener('DOMContentLoaded', function() {
             { ...drawdownTrace, xaxis: 'x2', yaxis: 'y2' }
         ];
 
-        Plotly.newPlot('charts', data, layout);
+        // Plotly.newPlot('charts', data, layout);
+
+        Plotly.newPlot('charts', data, layout).then(gd => {
+        // Synchronize zooming
+        gd.on('plotly_relayout', function(eventdata) {
+            const update = {};
+            if(eventdata['xaxis.range[0]'] !== undefined && eventdata['xaxis.range[1]'] !== undefined) {
+                update['xaxis2.range'] = [eventdata['xaxis.range[0]'], eventdata['xaxis.range[1]']];
+            }
+            Plotly.relayout(gd, update);
+        });
+    });
     }
 });
