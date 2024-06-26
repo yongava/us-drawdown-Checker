@@ -137,13 +137,13 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         const layout = {
-            title: `${symbol} Price and Drawdown`,
-            grid: { rows: 2, columns: 1, pattern: 'independent' },
+            title: `${symbol}`,
+            grid: { rows: 2, columns: 1 },
+            showlegend: false,
             xaxis: { title: 'Date' },
             yaxis: { title: 'Price' },
-            xaxis2: { title: 'Date' },
-            yaxis2: { title: 'Drawdown' },
-            showlegend: false
+            xaxis2: { title: 'Date', anchor: 'y2' },
+            yaxis2: { title: 'Drawdown' }
         };
 
         const data = [
