@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
 
-            const headers = ['Start Date', 'End Date', 'Drawdown Percentage'];
+            const headers = ['Drawdown Start', 'Drawdown End', 'Drawdown Percentage'];
             headers.forEach(headerText => {
                 const th = document.createElement('th');
                 th.textContent = headerText;
