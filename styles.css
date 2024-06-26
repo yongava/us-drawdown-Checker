@@ -24,6 +24,7 @@ h1 {
 }
 
 .form {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,6 +45,28 @@ h1 {
     width: 100%;
 }
 
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.suggestions div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions div:hover {
+    background: #f0f0f0;
+}
+
 .form button {
     padding: 10px 20px;
     font-size: 1em;
@@ -56,26 +79,6 @@ h1 {
 
 .form button:hover {
     background-color: #0056b3;
-}
-
-.suggestions {
-    position: absolute;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    max-height: 150px;
-    overflow-y: auto;
-    width: calc(100% - 22px);
-    z-index: 1000;
-}
-
-.suggestions div {
-    padding: 10px;
-    cursor: pointer;
-}
-
-.suggestions div:hover {
-    background: #f0f0f0;
 }
 
 .report {
