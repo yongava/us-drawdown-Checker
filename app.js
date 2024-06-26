@@ -21,7 +21,6 @@ function findDrawdownPeriods(drawdowns, dates) {
     let inDrawdown = false;
     let startDate = null;
     let maxDrawdown = 0;
-    let endDate = null;
 
     for (let i = 0; i < drawdowns.length; i++) {
         if (drawdowns[i] < 0) {
@@ -32,18 +31,14 @@ function findDrawdownPeriods(drawdowns, dates) {
             } else {
                 maxDrawdown = Math.min(maxDrawdown, drawdowns[i]);
             }
-        } else {
-            if (inDrawdown) {
-                inDrawdown = false;
-                endDate = dates[i];
-                periods.push({ startDate, endDate, drawdown: maxDrawdown * 100 });
-            }
+        } else if (inDrawdown) {
+            periods.push({ startDate, endDate: dates[i], drawdown: maxDrawdown * 100 });
+            inDrawdown = false;
         }
     }
 
     if (inDrawdown) {
-        endDate = dates[dates.length - 1];
-        periods.push({ startDate, endDate, drawdown: maxDrawdown * 100 });
+        periods.push({ startDate, endDate: dates[dates.length - 1], drawdown: maxDrawdown * 100 });
     }
 
     return periods.sort((a, b) => a.drawdown - b.drawdown).slice(0, 3);
