@@ -55,8 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             x: drawdownData.map(d => d.date),
             y: drawdownData.map(d => d.drawdown),
             type: 'scatter',
-            name: 'Drawdown',
-            yaxis: 'y2'
+            name: 'Drawdown'
         };
 
         const layout = {
@@ -64,15 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
             grid: { rows: 2, columns: 1, pattern: 'independent' },
             xaxis: { title: 'Date' },
             yaxis: { title: 'Price' },
-            yaxis2: { title: 'Drawdown', anchor: 'x', overlaying: 'y', side: 'right' },
-            subplots: [
-                { xaxis: 'x1', yaxis: 'y1' },
-                { xaxis: 'x2', yaxis: 'y2' }
-            ]
+            xaxis2: { title: 'Date' },
+            yaxis2: { title: 'Drawdown' },
+            subplot_titles: ['Price', 'Drawdown']
         };
 
-        const data = [priceTrace, drawdownTrace];
-
-        Plotly.newPlot('charts', data, layout);
+        Plotly.newPlot('charts', [
+            { ...priceTrace, xaxis: 'x', yaxis: 'y' },
+            { ...drawdownTrace, xaxis: 'x2', yaxis: 'y2' }
+        ], layout);
     }
 });
