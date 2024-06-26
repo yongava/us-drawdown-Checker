@@ -1,6 +1,5 @@
 async function fetchStockData(stockSymbol, fromDate, toDate) {
-    const apiKey = process.env.EOD_API_TOKEN; // Access the environment variable
-    const url = `https://eodhistoricaldata.com/api/eod/${stockSymbol}.US?fmt=json&order=d&from=${fromDate}&to=${toDate}&api_token=${apiKey}`;
+    const url = `https://eodhistoricaldata.com/api/eod/${stockSymbol}.US?fmt=json&order=d&from=${fromDate}&to=${toDate}&api_token=5d66a65679a7c9.784184268264`;
     const response = await fetch(url);
     const data = await response.json();
     return data;
