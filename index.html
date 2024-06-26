@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Drawdown Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #report {
+            margin-top: 20px;
+        }
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stock Drawdown Report</h1>
+    <label for="stockSymbol">Enter Stock Symbol: </label>
+    <input type="text" id="stockSymbol" placeholder="AAPL">
+    <button onclick="generateReport()">Generate Report</button>
+    <div id="report"></div>
+    <canvas id="priceChart"></canvas>
+    <canvas id="drawdownChart"></canvas>
+    <script src="app.js"></script>
+</body>
+</html>
