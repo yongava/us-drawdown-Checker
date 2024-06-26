@@ -1,5 +1,5 @@
 async function fetchStockData(stockSymbol, fromDate, toDate) {
-    const url = `https://eodhistoricaldata.com/api/eod/${stockSymbol}.US?fmt=json&order=d&from=${fromDate}&to=${toDate}&api_token=5d66a65679a7c9.784184268264`;
+    const url = `https://eodhistoricaldata.com/api/eod/${stockSymbol}.US?fmt=json&order=d&from=${fromDate}&to=${toDate}&api_token=YOUR_API_TOKEN`;
     const response = await fetch(url);
     const data = await response.json();
     return data;
@@ -20,26 +20,33 @@ function findDrawdownPeriods(drawdowns, dates) {
     let periods = [];
     let inDrawdown = false;
     let startDate = null;
+    let maxDrawdown = 0;
+    let endDate = null;
 
     for (let i = 0; i < drawdowns.length; i++) {
-        if (drawdowns[i] < 0 && !inDrawdown) {
-            inDrawdown = true;
-            startDate = dates[i];
-        } else if (drawdowns[i] === 0 && inDrawdown) {
-            inDrawdown = false;
-            const endDate = dates[i];
-            const maxDrawdown = Math.min(...drawdowns.slice(drawdowns.indexOf(drawdowns.find(d => dates[drawdowns.indexOf(d)] === startDate)), i));
-            periods.push({ startDate, endDate, drawdown: Math.abs(maxDrawdown) * 100 });
+        if (drawdowns[i] < 0) {
+            if (!inDrawdown) {
+                inDrawdown = true;
+                startDate = dates[i];
+                maxDrawdown = drawdowns[i];
+            } else {
+                maxDrawdown = Math.min(maxDrawdown, drawdowns[i]);
+            }
+        } else {
+            if (inDrawdown) {
+                inDrawdown = false;
+                endDate = dates[i];
+                periods.push({ startDate, endDate, drawdown: maxDrawdown * 100 });
+            }
         }
     }
 
     if (inDrawdown) {
-        const endDate = dates[dates.length - 1];
-        const maxDrawdown = Math.min(...drawdowns.slice(drawdowns.indexOf(drawdowns.find(d => dates[drawdowns.indexOf(d)] === startDate))));
-        periods.push({ startDate, endDate, drawdown: Math.abs(maxDrawdown) * 100 });
+        endDate = dates[dates.length - 1];
+        periods.push({ startDate, endDate, drawdown: maxDrawdown * 100 });
     }
 
-    return periods.sort((a, b) => b.drawdown - a.drawdown).slice(0, 3);
+    return periods.sort((a, b) => a.drawdown - b.drawdown).slice(0, 3);
 }
 
 function plotChart(ctx, labels, data, title) {
