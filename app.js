@@ -50,27 +50,24 @@ document.addEventListener('DOMContentLoaded', function() {
             y: data.map(d => d.price),
             type: 'scatter'
         };
-
+        
         const drawdown_trace = {
             x: data.map(d => d.date),
             y: data.map(d => d.drawdown),
             type: 'scatter'
         };
 
-        const layout = {
-            title: `${symbol} Price and Drawdown`,
-            grid: { rows: 2, columns: 1, pattern: 'independent' },
-            xaxis: { title: 'Date' },
-            yaxis: { title: 'Price' },
-            yaxis2: { title: 'Drawdown', anchor: 'x', overlaying: 'y', side: 'right' },
-            subplots: [
-                { xaxis: 'x1', yaxis: 'y1' },
-                { xaxis: 'x2', yaxis: 'y2' }
-            ]
-        };
-
-        Plotly.newPlot('price-chart', [price_trace,drawdown_trace], layout);
+        Plotly.newPlot('price-chart', [trace], layout);
     }
 
+    function plotDrawdownChart(data, symbol) {
+        const drawdown_trace = {
+            x: data.map(d => d.date),
+            y: data.map(d => d.drawdown),
+            type: 'scatter'
+        };
 
+
+        Plotly.newPlot('drawdown-chart', [trace], layout);
+    }
 });
