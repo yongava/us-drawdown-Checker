@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('stock-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const symbol = symbolInput.value.toUpperCase();
+        loadAssetData(symbol);
         loadCSVData(symbol);
     });
 
