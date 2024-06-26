@@ -2,30 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Drawdown Report</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #report {
-            margin-top: 20px;
-        }
-        canvas {
-            max-width: 100%;
-        }
-    </style>
+    <title>Stock Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
-    <h1>Stock Drawdown Report</h1>
-    <label for="stockSymbol">Enter Stock Symbol: </label>
-    <input type="text" id="stockSymbol" placeholder="AAPL">
-    <button onclick="generateReport()">Generate Report</button>
+    <h1>Drawdown Statistic</h1>
+    <form id="stock-form">
+        <label for="symbol">Enter Stock Symbol:</label>
+        <input type="text" id="symbol" name="symbol" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Report</h2>
     <div id="report"></div>
-    <canvas id="priceChart"></canvas>
-    <canvas id="drawdownChart"></canvas>
-    <script src="app.js"></script>
+
+    <h2>Price Chart</h2>
+    <div id="price-chart"></div>
+
+    <h2>Drawdown Chart</h2>
+    <div id="drawdown-chart"></div>
 </body>
 </html>
