@@ -103,3 +103,21 @@ h1 {
         width: 100%;
     }
 }
+
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.report-table th,
+.report-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.report-table th {
+    background-color: #f2f2f2;
+}

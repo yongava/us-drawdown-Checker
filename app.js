@@ -55,34 +55,85 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // function displayReport(reportData) {
+    //     const reportDiv = document.getElementById('report');
+    //     reportDiv.innerHTML = '';
+
+    //     if (reportData.length > 0) {
+    //         reportData.forEach(row => {
+    //             const p = document.createElement('p');
+    //             p.textContent = `${row['Start Date']} to ${row['End Date']}: ${row['Drawdown Percentage']}%`;
+    //             reportDiv.appendChild(p);
+    //         });
+    //     } else {
+    //         reportDiv.textContent = 'No data available for this symbol.';
+    //     }
+    // }
+
     function displayReport(reportData) {
         const reportDiv = document.getElementById('report');
         reportDiv.innerHTML = '';
 
         if (reportData.length > 0) {
-            reportData.forEach(row => {
-                const p = document.createElement('p');
-                p.textContent = `Drawdown Statisic: \n ${row['Start Date']} to ${row['End Date']}: ${row['Drawdown Percentage']}%`;
-                reportDiv.appendChild(p);
+            const table = document.createElement('table');
+            table.className = 'report-table';
+
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+
+            const headers = ['Start Date', 'End Date', 'Drawdown Percentage'];
+            headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
             });
+
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+
+            reportData.forEach(row => {
+                const tr = document.createElement('tr');
+
+                const startDateTd = document.createElement('td');
+                startDateTd.textContent = row['Start Date'];
+                tr.appendChild(startDateTd);
+
+                const endDateTd = document.createElement('td');
+                endDateTd.textContent = row['End Date'];
+                tr.appendChild(endDateTd);
+
+                const drawdownPercentageTd = document.createElement('td');
+                drawdownPercentageTd.textContent = `${row['Drawdown Percentage']}%`;
+                tr.appendChild(drawdownPercentageTd);
+
+                tbody.appendChild(tr);
+            });
+
+            table.appendChild(tbody);
+            reportDiv.appendChild(table);
         } else {
             reportDiv.textContent = 'No data available for this symbol.';
         }
     }
+
 
     function plotPriceAndDrawdownChart(priceData, drawdownData, symbol) {
         const priceTrace = {
             x: priceData.map(d => d.date),
             y: priceData.map(d => d.price),
             type: 'scatter',
-            name: 'Price'
+            name: 'Price',
+            line: { color: '#03d3dd' }
         };
 
         const drawdownTrace = {
             x: drawdownData.map(d => d.date),
             y: drawdownData.map(d => d.drawdown*100),
             type: 'scatter',
-            name: 'Drawdown (%)'
+            name: 'Drawdown (%)',
+            line: { color: '#f74d03' }
         };
 
         const layout = {
@@ -91,7 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
             xaxis: { title: 'Date' },
             yaxis: { title: 'Price' },
             xaxis2: { title: 'Date' },
-            yaxis2: { title: 'Drawdown' }
+            yaxis2: { title: 'Drawdown' },
+            showlegend: false
         };
 
         const data = [
