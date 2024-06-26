@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
+
     // Add event listener for keydown event to handle Enter key submission
     symbolInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         stockInfoDiv.innerHTML = `
             <p><strong>Company Name:</strong> ${assetInfo.company_name}</p>
             <p><strong>GICS Industry:</strong> ${assetInfo.gics_industry}</p>
-            <p><a href="https://r-ket.app/asset-info?symbol=${assetInfo.symbol}&id=${assetInfo.asset_id}" target="_blank">ดูข้อมูลพื้นฐานของ ${assetInfo.symbol} เพิ่มเติมได้ที่นี่</a></p>
+            <p><a href="https://r-ket.app/asset-info?symbol=${assetInfo.symbol}&id=${assetInfo.asset_id}" target="_blank">ดูข้อมูลพื้นฐาน และข่าวล่าสุดของ ${assetInfo.symbol} เพิ่มเติมได้ที่นี่</a></p>
         `;
     }
 
