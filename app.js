@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const reportFiltered = reportData.filter(d => d.Stock === symbol);
 
                     displayReport(reportFiltered);
-                    plotPriceChart(priceFiltered, symbol);
-                    plotDrawdownChart(drawdownFiltered, symbol);
+                    plotPriceAndDrawdownChart(priceFiltered, drawdownFiltered, symbol);
                 });
             });
         });
@@ -44,30 +43,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function plotPriceChart(data, symbol) {
-        const price_trace = {
-            x: data.map(d => d.date),
-            y: data.map(d => d.price),
-            type: 'scatter'
-        };
-        
-        const drawdown_trace = {
-            x: data.map(d => d.date),
-            y: data.map(d => d.drawdown),
-            type: 'scatter'
+    function plotPriceAndDrawdownChart(priceData, drawdownData, symbol) {
+        const priceTrace = {
+            x: priceData.map(d => d.date),
+            y: priceData.map(d => d.price),
+            type: 'scatter',
+            name: 'Price'
         };
 
-        Plotly.newPlot('price-chart', [trace], layout);
-    }
-
-    function plotDrawdownChart(data, symbol) {
-        const drawdown_trace = {
-            x: data.map(d => d.date),
-            y: data.map(d => d.drawdown),
-            type: 'scatter'
+        const drawdownTrace = {
+            x: drawdownData.map(d => d.date),
+            y: drawdownData.map(d => d.drawdown),
+            type: 'scatter',
+            name: 'Drawdown',
+            yaxis: 'y2'
         };
 
+        const layout = {
+            title: `${symbol} Price and Drawdown`,
+            grid: { rows: 2, columns: 1, pattern: 'independent' },
+            xaxis: { title: 'Date' },
+            yaxis: { title: 'Price' },
+            yaxis2: { title: 'Drawdown', anchor: 'x', overlaying: 'y', side: 'right' },
+            subplots: [
+                { xaxis: 'x1', yaxis: 'y1' },
+                { xaxis: 'x2', yaxis: 'y2' }
+            ]
+        };
 
-        Plotly.newPlot('drawdown-chart', [trace], layout);
+        const data = [priceTrace, drawdownTrace];
+
+        Plotly.newPlot('charts', data, layout);
     }
 });
