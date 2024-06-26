@@ -72,8 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
         stockInfoDiv.innerHTML = `
             <p><strong>Company Name:</strong> ${assetInfo.company_name}</p>
             <p><strong>GICS Industry:</strong> ${assetInfo.gics_industry}</p>
-            <p><strong>Business Description:</strong> ${assetInfo.business_description}</p>
-            <p><a href="https://r-ket.app/asset-info?symbol=${assetInfo.symbol}&id=${assetInfo.asset_id}" target="_blank">See more fundamental info.</a></p>
+            <p><a href="https://r-ket.app/asset-info?symbol=${assetInfo.symbol}&id=${assetInfo.asset_id}" target="_blank">ดูข้อมูลพื้นฐานของ ${assetInfo.symbol} เพิ่มเติมได้ที่นี่</a></p>
         `;
     }
 
