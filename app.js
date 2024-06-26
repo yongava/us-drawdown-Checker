@@ -64,13 +64,14 @@ document.addEventListener('DOMContentLoaded', function() {
             xaxis: { title: 'Date' },
             yaxis: { title: 'Price' },
             xaxis2: { title: 'Date' },
-            yaxis2: { title: 'Drawdown' },
-            subplot_titles: ['Price', 'Drawdown']
+            yaxis2: { title: 'Drawdown' }
         };
 
-        Plotly.newPlot('charts', [
+        const data = [
             { ...priceTrace, xaxis: 'x', yaxis: 'y' },
             { ...drawdownTrace, xaxis: 'x2', yaxis: 'y2' }
-        ], layout);
+        ];
+
+        Plotly.newPlot('charts', data, layout);
     }
 });
