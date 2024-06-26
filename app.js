@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayStockInfo(assetInfo) {
         const stockInfoDiv = document.getElementById('stock-info');
         stockInfoDiv.innerHTML = `
-            <p><h2>${assetInfo.company_name}</h2><a href="${assetInfo.website}" target="_blank">${assetInfo.website}</a></p>
+            <h2><a href="${assetInfo.website}" target="_blank">${assetInfo.company_name}</a></h2>
             <p><strong>Industry:</strong> ${assetInfo.gics_industry}</p>
             <p><a href="https://r-ket.app/asset-info?symbol=${assetInfo.symbol}&id=${assetInfo.asset_id}" target="_blank">ดูข้อมูลพื้นฐานและข่าวล่าสุดของ ${assetInfo.symbol} เพิ่มเติมได้ที่นี่</a></p>
         `;
