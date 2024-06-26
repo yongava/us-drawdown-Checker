@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const reportFiltered = reportData.filter(d => d.Stock === symbol);
 
                     displayReport(reportFiltered);
-                    plotPriceAndDrawdownChart(priceFiltered, drawdownFiltered, symbol);
+                    plotPriceChart(priceFiltered, symbol);
+                    plotDrawdownChart(drawdownFiltered, symbol);
                 });
             });
         });
@@ -43,20 +44,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function plotPriceAndDrawdownChart(priceData, drawdownData, symbol) {
-        const priceTrace = {
-            x: priceData.map(d => d.date),
-            y: priceData.map(d => d.price),
-            type: 'scatter',
-            name: 'Price'
+    function plotPriceChart(data, symbol) {
+        const price_trace = {
+            x: data.map(d => d.date),
+            y: data.map(d => d.price),
+            type: 'scatter'
         };
 
-        const drawdownTrace = {
-            x: drawdownData.map(d => d.date),
-            y: drawdownData.map(d => d.drawdown),
-            type: 'scatter',
-            name: 'Drawdown',
-            yaxis: 'y2'
+        const drawdown_trace = {
+            x: data.map(d => d.date),
+            y: data.map(d => d.drawdown),
+            type: 'scatter'
         };
 
         const layout = {
@@ -71,8 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         };
 
-        const data = [priceTrace, drawdownTrace];
-
-        Plotly.newPlot('charts', data, layout);
+        Plotly.newPlot('price-chart', [price_trace,drawdown_trace], layout);
     }
+
+
 });
