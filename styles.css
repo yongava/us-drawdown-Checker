@@ -75,6 +75,7 @@ h1 {
     border: none;
     border-radius: 40px;
     cursor: pointer;
+    width: 50%;
 }
 
 .form button:hover {
@@ -100,7 +101,8 @@ h1 {
     }
 
     .form input, .form button {
-        width: 100%;
+        width: auto;
+
     }
 }
 
